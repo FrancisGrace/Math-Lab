@@ -1,0 +1,63 @@
+%多元函数微分1
+syms x y z;
+f=sqrt(x^2+y^2)-z;
+fx=diff(f,x);
+fy=diff(f,y);
+x=1;
+y=1;
+z=sqrt(2);
+fxv=eval(fx);
+fyv=eval(fy);
+[x,y]=meshgrid(-2:0.1:2);
+z1=abs(sqrt(x.^2+y.^2));
+z2=fxv*(x-1)+fyv*(y-1)+sqrt(2);
+t=-1:0.1:1;
+x3=fxv*t+1;
+y3=fyv*t+1;
+z3=-t+sqrt(2);
+figure;
+title('(1)','fontsize',20);
+hold on;
+mesh(x,y,z1);
+mesh(x,y,z2);
+plot3(x3,y3,z3);
+axis equal;
+hold off;
+
+%多元函数微分2
+x1=linspace(-2,2);
+y1=linspace(-2,2);
+[x,y]=meshgrid(x1,y1);
+u=x.*x+y.*y;
+v=2.*x.*y;
+figure;
+mesh(x,y,u);
+title('(2)--The graph of u(x,y)','fontsize',20);
+figure;
+mesh(x,y,v);
+title('(2)--The graph of v(x,y)','fontsize',20);
+figure;
+h1=contour(x,y,u,'ShowText','on');
+title('(2)--The contour of u(x,y)','fontsize',20);
+figure;
+h2=contour(x,y,v,'ShowText','on');
+title('(2)--The contour of v(x,y)','fontsize',20);
+
+%多元函数微分3
+x1=linspace(-2,2);
+y1=linspace(-2,2);
+[x,y]=meshgrid(x1,y1);
+f=x.^4-8.*x.*y+2.*y.*y-3;
+figure;
+h=contour(x,y,f,'ShowText','on');
+title('(3)--The contour of f(x,y)','fontsize',20);
+syms x y;
+f=x.^4-8.*x.*y+2.*y.*y-3;
+eqn=[diff(f,x)==0,diff(f,y)==0];
+vars=[x,y];
+s=solve(eqn,vars);
+a=double(subs(f,vars,[s.x(1),s.y(1)]));
+b=double(subs(f,vars,[s.x(2),s.y(2)]));
+c=double(subs(f,vars,[s.x(3),s.y(3)]));
+fprintf("(3)\nThe maximum value of f(x,y) is %s\n",max(max(a,b),c));
+fprintf("The minimum value of f(x,y) is %s\n",min(min(a,b),c));
