@@ -1,4 +1,3 @@
-%多元函数积分
 syms x y;
 s1=int(int(x^2+y^2,y,-x-1,x+1),x,-1,0)+int(int(x^2+y^2,y,x-1,-x+1),x,0,1);
 syms r s t;
