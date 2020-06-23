@@ -1,12 +1,14 @@
+%泰勒展开
 syms x;
 f=taylor(sin(x),'Order',3);
 x=3*pi/180;
-s1=eval(f);
+fprintf("(1)%s\n",eval(f));
 syms x;
 f=taylor(x^(1/3),x,27,'Order',3);
 x=30;
-s2=eval(f);
+fprintf("(2)%s\n",eval(f));
 syms x;
 f=taylor(sqrt(x),x,4,'Order',2);
+fprintf("(3)%s, ",f);
 x=4.4;
-s3=eval(f);
+fprintf("%f\n",eval(f));
